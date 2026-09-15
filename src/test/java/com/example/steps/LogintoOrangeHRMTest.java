@@ -29,9 +29,7 @@ public class LogintoOrangeHRMTest {
 
     @Before 
     public void setup(){
-        driver = new ChromeDriver();
-        lp = new loginPage(driver);
-        dp = new dashbordPage(driver);
+       // driver = new ChromeDriver();
         URL gridUrl = null;
 
         try {
@@ -43,6 +41,10 @@ public class LogintoOrangeHRMTest {
         driver = new RemoteWebDriver(gridUrl, cr);
 
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+        lp = new loginPage(driver);
+        dp = new dashbordPage(driver);
+
+        
     } 
 
     @After 
@@ -52,7 +54,6 @@ public class LogintoOrangeHRMTest {
         driver = null ;
     }
 
-   
     @When("je saisis le password {string}")
     public void je_saisis_le_password(String s) {
         lp.saisirpassword(s);
@@ -73,11 +74,6 @@ public class LogintoOrangeHRMTest {
         driver.get(URL);
     }
 
-    @Then("je suis redirige vers le Dashbord {string}")
-    public void je_suis_redirige_vers_le_Dashbord(String s) {
-        driver.get(s);
-    }
-
     @Then("la section My Actions est  visible")
     public void   la_section_My_Actions_est_visible() {
         assertEquals("My Actions", dp.verifieActions());
@@ -86,5 +82,10 @@ public class LogintoOrangeHRMTest {
     @Then("la section Quick launch est visible")
     public void la_section_Quick_launch_est_visible() {
         assertEquals("Quick Launch", dp.verifierquicklauch());
+    }
+
+    @Then("je suis redirige vers le Dashbord")
+    public void je_suis_redirige_vers_le_Dashbord() {
+        assertEquals( "https://opensource-demo.orangehrmlive.com/web/index.php/dashboard/index",driver.getCurrentUrl());
     }
 }
