@@ -29,7 +29,7 @@ public class LogintoOrangeHRMTest {
 
     @Before 
     public void setup(){
-       // driver = new ChromeDriver();
+        //driver = new ChromeDriver();
         URL gridUrl = null;
 
         try {
